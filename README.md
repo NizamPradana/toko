@@ -65,14 +65,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 # Toko Komputer Kita
 
-<p align="center">Projek e-Commerce by. Nizam Pradana</p>
-<p align="center">Build With by: </p>
+<p >Projek e-Commerce by. Nizam Pradana</p>
+<p >Build With by: </p>
 - ** LARAVEL
 - ** BOOTSTRAP
 - ** oth.
 
-<p align="center">Design front page by : </p>
+<p >Design front page by : </p>
 -- ** <a href="https://imransdesign.com/">IMRAN HOSSAIN</a>
 
-<p align="center">Dashboard design powered by : </p>
+<p >Dashboard design powered by : </p>
 -- ** <a href="https://adminlte.io/">AdminLTE</a>
