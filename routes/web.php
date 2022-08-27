@@ -67,6 +67,10 @@ Route::middleware(['auth', 'role:user'])->group(function(){
 
     Route::resource('keranjang', KeranjangController::class);
 
+    Route::get('/checkout-alamat', function(){
+        return view('mainPage.checkout.alamat');
+    });
+
 });
 Route::get('/toko', [shopController::class , 'index'])->name('toko');
 

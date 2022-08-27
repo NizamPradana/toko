@@ -142,7 +142,7 @@
     </div>
     <!-- end breadcrumb section -->
 
-    @yield('container')
+    @yield('container') <!-- ----------------------------------------- -->
 
     <!-- footer -->
     <div class="footer-area">
