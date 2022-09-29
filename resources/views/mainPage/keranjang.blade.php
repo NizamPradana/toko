@@ -83,7 +83,7 @@
 
                 @if (Cart::count() >= 1)
                   <div class="cart-buttons">
-                    <a href="/checkout/alamat" class="boxed-btn black">Check Out</a>
+                    <a href="/checkout" class="boxed-btn black">Checkout</a>
                   </div>
                 @endif
 

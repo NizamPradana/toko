@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->integer('subtotal');
             $table->text('alamat');
-            $table->string('status_pesanan')->default('Baru');
+            $table->string('status_pesanan')->default('Invalid');
             $table->string('status_pengiriman')->nullable();
             $table->string('status_pembayaran')->nullable();
             $table->timestamps();

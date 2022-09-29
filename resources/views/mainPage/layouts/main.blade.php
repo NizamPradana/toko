@@ -9,6 +9,9 @@
     <!-- title -->
     <title>Toko Kita </title>
 
+    {{-- midtrans --}}
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-NKIXku1J70TmxTVI"></script>
+
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" />
     <!-- google font -->

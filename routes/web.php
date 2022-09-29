@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/ 
+*/
 
 Route::get('/', function () {
     // return view('welcome');
@@ -47,35 +47,32 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     // route barang
     Route::resource('barang', barangController::class);
-    Route::post('/barang/statusPajang', [barangController::class , 'updateStatus'])->name('updateStatusBarang');
+    Route::post('/barang/statusPajang', [barangController::class, 'updateStatus'])->name('updateStatusBarang');
 
     // route user
     Route::get('/users', [AuthController::class, 'index'])->name('daftarUser');
     Route::get('/userAdd', [AuthController::class, 'create'])->name('tambahUser');
 
     // Route pembayaran
-    Route::get('/bayar', function(){
+    Route::get('/bayar', function () {
         return view('dashboard.pembayaran.index', [
             'title' => 'Pembayaran',
         ]);
     })->name('viewPembayaran');
-
 });
 
 
 // role User
-Route::middleware(['auth', 'role:user'])->group(function(){
+Route::middleware(['auth', 'role:user'])->group(function () {
 
     Route::resource('keranjang', KeranjangController::class);
 
-    Route::get('/checkout/alamat', [CheckoutController::class , 'alamat']);
-    
-    Route::get('/checkout/bayar', [CheckoutController::class , 'viewPembayaran']);
+    Route::get('/checkout', [CheckoutController::class, 'index']);
 
+    Route::post('/checkout/alamat', [CheckoutController::class, 'updateAlamat']);
+
+    Route::get('/checkout/bayar', [CheckoutController::class, 'viewPembayaran'])->name('viewBayar');
 });
-Route::get('/toko', [shopController::class , 'index'])->name('toko');
+Route::get('/toko', [shopController::class, 'index'])->name('toko');
 
 Route::get('/toko/{id}', [shopController::class, 'singleBarang'])->name('singleBarang');
-
-
-

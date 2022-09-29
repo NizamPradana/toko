@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pesanan_id');
             $table->foreignId('barang_id');
-            $table->integer('kuantitas');
-            $table->integer('total_harga');
+            $table->bigInteger('kuantitas');
+            $table->bigInteger('total_harga');
             $table->timestamps();
         });
     }

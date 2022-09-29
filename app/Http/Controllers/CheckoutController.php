@@ -2,14 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pesanan;
 use App\Models\User;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+
 
 class CheckoutController extends Controller
 {
-    public function alamat()
+    public function index()
     {
-        return view('mainPage.checkout.alamat');
+
+
+
+        $orderItems = Cart::instance((auth()->user()->email))->content();
+
+
+
+
+
+        return view('mainPage.checkout.checkout', [
+            'orderItems' => $orderItems,
+        ]);
     }
 
     // update alamat
@@ -23,10 +37,14 @@ class CheckoutController extends Controller
         ]);
 
         if ($validated) {
-            User::where('id', $request->id)->update(['nama' => $request->nama, 'no_telp' => $request->no_telp, 'alamat' => $request->alamat]);
 
-            
+            $order = Pesanan::create([
+                'user_id' => auth()->user()->id,
+                'alamat' => $request->alamat,
+                'subtotal' => 0,
+            ]);
 
+            return redirect()->route('viewBayar');
         }
     }
 
