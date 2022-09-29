@@ -66,13 +66,21 @@
                                 </tr>
                             </tbody>
                         @endforeach
-
+                            <tfoot>
+                                <tr>
+                                    <th >Total</th>
+                                    <th>{{ Cart::count() }}</th>
+                                    <th>Rp. {{ Cart::subtotal(0,1,'.') }}</th>
+                                </tr>
+                            </tfoot>
                     </table>
                 </div>
 
                 <hr>
                 <h3 class="text-center my-3">Pembayaran</h3>
-                <button id="pay-button" class="btn btn-warning">Pay!</button>
+                <div class="text-center">
+                    <button id="pay-button" class="btn btn-info w-100 "> Bayar</button>
+                </div>
 
             </div>
           </div>
