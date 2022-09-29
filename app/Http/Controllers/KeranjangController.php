@@ -48,11 +48,13 @@ class KeranjangController extends Controller
             'kuantitas' => 'required',
             'harga' => 'required',
             'nama_barang' => 'required',
-            'email' => 'required',
+            'email' => 'required', 
         ]);
 
         $add = Cart::instance($validated['email'])->add($validated['barang_id'], $validated['nama_barang'], $validated['kuantitas'], $validated['harga']);
 
+        Cart::instance($validated['email'])->store($validated['email']);
+        
 
         if($add)
         {

@@ -25,12 +25,12 @@
                     <input type="hidden" name="barang_id" value="{{ $barang->id }}">
                     <input type="hidden" name="email" value="{{ auth()->user()->email }}">
                     <input type="hidden" name="harga" value="{{ $barang->harga_satuan }}">
-                    <input type="number" placeholder="0" max="{{ $barang->stok }}" name="kuantitas"/>
+                    <input type="number" min="0" placeholder="" id="qty" max="{{ $barang->stok }}" value="1" name="kuantitas"/>
                     <a type="submit" class="cart-btn">
                       <button type="submit" class="bg-transparent border-0"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                     </a>
                   </form>
-                  <p><strong>Categories: </strong>Fruits, Organic</p>
+                  {{-- <p><strong>Categories: </strong>Fruits, Organic</p> --}}
                 </div>
                 <h4>Share:</h4>
                 <ul class="product-share">
@@ -53,5 +53,7 @@
         </div>
       </div>
       <!-- end single product -->
+
+      
 
 @endsection

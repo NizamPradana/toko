@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\dashboard\barangController;
 use App\Http\Controllers\dashboard\PesananController;
 use App\Http\Controllers\KeranjangController;
@@ -67,9 +68,9 @@ Route::middleware(['auth', 'role:user'])->group(function(){
 
     Route::resource('keranjang', KeranjangController::class);
 
-    Route::get('/checkout-alamat', function(){
-        return view('mainPage.checkout.alamat');
-    });
+    Route::get('/checkout/alamat', [CheckoutController::class , 'alamat']);
+    
+    Route::get('/checkout/bayar', [CheckoutController::class , 'viewPembayaran']);
 
 });
 Route::get('/toko', [shopController::class , 'index'])->name('toko');

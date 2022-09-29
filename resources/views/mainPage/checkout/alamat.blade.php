@@ -2,7 +2,7 @@
 
 @section('container')
 
-    <!-- cart -->
+    
     <div class="cart-section mt-80 mb-150">
         <div class="container">
           <div class="row">
@@ -18,13 +18,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Nama Lengkap</label>
-                                <input type="text" name="nama" class="form-control"  required>
+                                <input type="text" name="nama" class="form-control" value="{{ auth()->user()->nama }}" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">No Telepon Penerima</label>
-                                <input type="number" name="no_telp" class="form-control w-100" required>
+                                <input type="number" name="no_telp" class="form-control w-100" value="{{ auth()->user()->no_telp }}" required>
                             </div>
                         </div>
                     </div>
@@ -32,11 +32,14 @@
 
                     <div class="row px-3">
                         <label for="">Alamat Lengkap</label>
-                        <textarea name="alamat" cols="20" rows="10" class="form-control"></textarea>
+                        <textarea name="alamat" cols="20" rows="10" class="form-control">{{ auth()->user()->alamat }}</textarea>
                     </div>
                     {{--  --}}
 
-                    <input type="submit" value="Konfirmasi" class="my-3 btn btn-warning">
+                    <input type="hidden" name="id" value="{{ auth()->user()->id }}">
+
+                    <input type="submit" value="Konfirmasi" class="my-3 btn btn-warning" onclick="confirm('Jika OK Maka Pesanan Akan Langsung Dibuat!')">
+                    <p class="text-muted small">*Jika klik KONFIRMASI Maka Pesanan Akan Langsung Dibuat!</p>
 
                 </form>
 
@@ -44,7 +47,6 @@
           </div>
         </div>
       </div>
-      <!-- end cart -->
 
 
 @endsection

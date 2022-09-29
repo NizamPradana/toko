@@ -45,13 +45,6 @@
                                         <input type="number" id="qty" name="kuantitas" placeholder="0" value="{{ $item->qty }}" />
                                         <button type="submit" id="btnUpdate" class=" bg-transparent border-0"><i class="fas fa-check"></i></button>
 
-                                        {{-- <script>
-                                            document.getElementById('qty').addEventListener('change', function() {
-                                                document.getElementById('btnUpdate').classList.remove('d-none');
-                                                document.getElementById('btnUpdate').classList.add('d-inline ff');
-                                            });
-                                        </script> --}}
-
                                     </form>
                                 </td>
                                 <td class="product-total"> @rupiah($item->subtotal) </td>
@@ -87,9 +80,13 @@
                     </tr>
                   </tbody>
                 </table>
-                <div class="cart-buttons">
-                  <a href="checkout.html" class="boxed-btn black">Check Out</a>
-                </div>
+
+                @if (Cart::count() >= 1)
+                  <div class="cart-buttons">
+                    <a href="/checkout/alamat" class="boxed-btn black">Check Out</a>
+                  </div>
+                @endif
+
               </div>
   
               <div class="coupon-section">

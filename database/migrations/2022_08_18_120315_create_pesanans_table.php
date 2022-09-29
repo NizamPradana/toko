@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->integer('subtotal');
+            $table->text('alamat');
+            $table->string('status_pesanan')->default('Baru');
+            $table->string('status_pengiriman')->nullable();
+            $table->string('status_pembayaran')->nullable();
             $table->timestamps();
         });
     }
