@@ -17,10 +17,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->integer('subtotal');
+            $table->text('transaction_id_mt');
             $table->text('alamat');
             $table->string('status_pesanan')->default('Invalid');
             $table->string('status_pengiriman')->nullable();
             $table->string('status_pembayaran')->nullable();
+            $table->text('qr_code_mt');
+            $table->text('redirect_link');
+            $table->text('url_check_status');
+            $table->text('url_cancel_payment');
             $table->timestamps();
         });
     }

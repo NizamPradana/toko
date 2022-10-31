@@ -48,19 +48,17 @@ class KeranjangController extends Controller
             'kuantitas' => 'required',
             'harga' => 'required',
             'nama_barang' => 'required',
-            'email' => 'required', 
+            'email' => 'required',
         ]);
 
         $add = Cart::instance($validated['email'])->add($validated['barang_id'], $validated['nama_barang'], $validated['kuantitas'], $validated['harga']);
 
         Cart::instance($validated['email'])->store($validated['email']);
-        
 
-        if($add)
-        {
+
+        if ($add) {
             return redirect()->route('keranjang.index')->with(['success' => 'Berhasil Menambahkan Barang ke Keranjang!']);
         }
-
     }
 
     /**
@@ -97,7 +95,6 @@ class KeranjangController extends Controller
         Cart::instance(auth()->user()->email)->update($id, $request->kuantitas);
 
         return redirect()->route('keranjang.index')->with(['success' => 'Berhasil Mengedit QTY Barang dari Keranjang!']);
-
     }
 
     /**
@@ -108,16 +105,14 @@ class KeranjangController extends Controller
      */
     public function destroy($id)
     {
-        Cart::remove($id);
-        // Cart::destroy($id);
+        Cart::instance(auth()->user()->email)->remove($id);
 
         return redirect()->route('keranjang.index')->with(['success' => 'Berhasil Menghapus Barang dari Keranjang!']);
-
     }
 
     // public function hapusSemua(Request $request)
     // {
-        
+
     // }
 
 }

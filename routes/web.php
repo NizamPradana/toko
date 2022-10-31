@@ -71,6 +71,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     Route::post('/checkout/alamat', [CheckoutController::class, 'updateAlamat']);
 
+    Route::post('/checkout/bayar', [CheckoutController::class, 'reqPayment']);
+
     Route::get('/checkout/bayar', [CheckoutController::class, 'viewPembayaran'])->name('viewBayar');
 });
 Route::get('/toko', [shopController::class, 'index'])->name('toko');

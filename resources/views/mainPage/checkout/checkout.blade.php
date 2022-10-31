@@ -2,7 +2,7 @@
 
 @section('container')
 
-    
+
     <div class="cart-section mt-80 mb-150">
         <div class="container">
           <div class="row">
@@ -11,7 +11,7 @@
                 <h3 class="text-center">Konfirmasi Alamat Anda</h3>
                 <p class="text-center mt-0 text-muted">Pastikan alamat yang anda masukan benar!</p>
 
-                <form action="/checkout/alamat" method="post">
+                <form action="/checkout/alamat" id="formAlamat" method="post">
                     @csrf
 
                     <div class="row ">
@@ -37,7 +37,7 @@
                     {{--  --}}
 
                     <input type="hidden" name="id" value="{{ auth()->user()->id }}">
-{{-- 
+{{--
                     <input type="submit" value="Konfirmasi" class="my-3 btn btn-warning" onclick="confirm('Jika OK Maka Pesanan Akan Langsung Dibuat!')">
                     <p class="text-muted small">*Jika klik KONFIRMASI Maka Pesanan Akan Langsung Dibuat!</p> --}}
 
@@ -49,7 +49,7 @@
                 <p class="text-center mt-0 text-muted">Detail Item Dipilih</p>
                 <div class="table-responsive">
                     <table class="table table-bordered">
-                        <thead class="table-dark"> 
+                        <thead class="table-dark">
                             <tr>
                                 <th>Item</th>
                                 <th>Qty</th>
@@ -78,45 +78,28 @@
 
                 <hr>
                 <h3 class="text-center my-3">Pembayaran</h3>
+                <p class="text-muted">Pembayaran melalui <b>Gopay</b></p>
                 <div class="text-center">
-                    <button id="pay-button" class="btn btn-info w-100 "> Bayar</button>
+                    <button class="btn btn-info w-100 " onclick="updateAlamat()"> Bayar</button>
                 </div>
 
             </div>
           </div>
           {{-- end row --}}
 
-          
+
 
         </div>
       </div>
 
-      {{-- payment script --}}
-      <script type="text/javascript">
-        // For example trigger on button clicked, or any time you need
-        var payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function () {
-          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-          window.snap.pay('{{ $snap_token }}', {
-            onSuccess: function(result){
-              /* You may add your own implementation here */
-              alert("payment success!"); console.log(result);
-            },
-            onPending: function(result){
-              /* You may add your own implementation here */
-              alert("wating your payment!"); console.log(result);
-            },
-            onError: function(result){
-              /* You may add your own implementation here */
-              alert("payment failed!"); console.log(result);
-            },
-            onClose: function(){
-              /* You may add your own implementation here */
-              alert('you closed the popup without finishing the payment');
+      <script>
+        function updateAlamat(){
+            if(confirm('Yakin ingin melanjutkan?')){
+                document.getElementById('formAlamat').submit();
             }
-          })
-        });
+        }
       </script>
+
 
 
 @endsection
