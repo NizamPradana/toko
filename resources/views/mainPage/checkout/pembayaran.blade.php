@@ -22,6 +22,10 @@
                     </div>
                 </div>
 
+                <a href="/toko">
+                    <button class="btn btn-danger">Back</button>
+                </a>
+
             </div>
           </div>
         </div>

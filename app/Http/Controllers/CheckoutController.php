@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\order_items;
 use App\Models\Pesanan;
 use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -32,6 +33,9 @@ class CheckoutController extends Controller
             'id' => 'required'
         ]);
 
+        $orderItems = Cart::instance((auth()->user()->email))->content();
+        $subtotal = Cart::subtotal(0, 1, '');
+
         if ($validated) {
 
             $response = $this->reqPayment($request);
@@ -57,6 +61,16 @@ class CheckoutController extends Controller
                 'url_cancel_payment' => $response->actions[3]->url,
             ]);
 
+            if ($order) {
+                foreach ($orderItems as $item) {
+                    order_items::create([
+                        'pesanan_id' => $order->id,
+                        'barang_id' => $item->id,
+                        'kuantitas' => $item->qty,
+                        'total_harga' => $item->subtotal(0, 1, ''),
+                    ]);
+                }
+            }
 
             return redirect()->route('viewBayar', ['id' => $response->transaction_id]);
         } //if validated

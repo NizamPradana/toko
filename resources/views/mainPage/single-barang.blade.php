@@ -23,7 +23,7 @@
                     @csrf
                     <input type="hidden" name="nama_barang" value="{{ $barang->nama_barang }}">
                     <input type="hidden" name="barang_id" value="{{ $barang->id }}">
-                    <input type="hidden" name="email" value="{{ auth()->user()->email }}">
+                    {{-- <input type="hidden" name="email" value="{{ auth()->user()->email }}"> --}}
                     <input type="hidden" name="harga" value="{{ $barang->harga_satuan }}">
                     <input type="number" min="0" placeholder="" id="qty" max="{{ $barang->stok }}" value="1" name="kuantitas"/>
                     <a type="submit" class="cart-btn">
@@ -54,6 +54,6 @@
       </div>
       <!-- end single product -->
 
-      
+
 
 @endsection

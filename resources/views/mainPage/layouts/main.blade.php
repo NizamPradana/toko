@@ -16,7 +16,7 @@
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" />
     <!-- google font -->
      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" /> 
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet" />
     <!-- fontawesome -->
     <link rel="stylesheet" href="{{ url('/') }}/assets/css/all.min.css" />
     <!-- bootstrap -->
@@ -78,8 +78,11 @@
                   @else
                     <li>
                       {{-- link profile --}}
-                      <a class="" href="#">{{ auth()->user()->nama }}</a> 
+                      <a class="" href="#">{{ auth()->user()->nama }}</a>
                       <ul class="sub-menu">
+                        <li>
+                            <a href="">Daftar Pesanan</a>
+                        </li>
                         <li>
                           <a onclick="submitForm()">LOGOUT</a>
                           <form action="{{ route('logout') }}" role="button" name="logoutForm" method="post">
