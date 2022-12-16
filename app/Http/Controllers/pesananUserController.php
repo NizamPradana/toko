@@ -2,11 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\order_items;
+use App\Models\Pesanan;
 use Illuminate\Http\Request;
 
-class OrderItemsController extends Controller
+class pesananUserController extends Controller
 {
+    // pesanan untuk halaman user
+    public function orderListForUser()
+    {
+        $userId = auth()->user()->id;
+
+        $datas = Pesanan::where('user_id', $userId)->get();
+
+        // if ($datas) {
+        //     $datas = null;
+        // }
+
+        return view('mainPage.pesanan.daftar_pesanan', [
+            'datas' => $datas
+        ]);
+    }
+
+    // single detail pesanan
+    public function detailPesanan($userId, $pesananId)
+    {
+        return view('mainPage.pesanan.single_pesanan');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -41,10 +62,10 @@ class OrderItemsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\order_items  $order_items
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(order_items $order_items)
+    public function show($id)
     {
         //
     }
@@ -52,10 +73,10 @@ class OrderItemsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\order_items  $order_items
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(order_items $order_items)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +85,10 @@ class OrderItemsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\order_items  $order_items
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, order_items $order_items)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +96,10 @@ class OrderItemsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\order_items  $order_items
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(order_items $order_items)
+    public function destroy($id)
     {
         //
     }

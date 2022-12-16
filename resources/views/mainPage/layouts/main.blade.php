@@ -81,7 +81,7 @@
                       <a class="" href="#">{{ auth()->user()->nama }}</a>
                       <ul class="sub-menu">
                         <li>
-                            <a href="">Daftar Pesanan</a>
+                            <a href="/daftar-pesanan">Daftar Pesanan</a>
                         </li>
                         <li>
                           <a onclick="submitForm()">LOGOUT</a>

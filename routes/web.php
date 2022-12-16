@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\dashboard\barangController;
 use App\Http\Controllers\dashboard\PesananController;
+use App\Http\Controllers\pesananUserController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +41,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-// role Admin
+// ------------------------------------- role Admin ------------------------------
 Route::middleware(['auth', 'role:admin'])->group(function () {
     // route pesanan
     Route::resource('pesanan', PesananController::class);
@@ -60,20 +61,32 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ]);
     })->name('viewPembayaran');
 });
+// ------------------------------------- role Admin ------------------------------
 
 
-// role User
+
+// ----------------------  role User ---------------------------------------
 Route::middleware(['auth', 'role:user'])->group(function () {
 
+    // daftar pesanan
+    Route::get('/daftar-pesanan', [pesananUserController::class, 'orderListForUser']);
+
+    Route::get('/pesanan/{userId}/{pesananId}', [pesananUserController::class, 'detailPesanan'])->name('detail-pesanan-user');
+
+
+
+    // keranjang
     Route::resource('keranjang', KeranjangController::class);
 
+    // Checkout
     Route::get('/checkout', [CheckoutController::class, 'index']);
-
     Route::post('/checkout/alamat', [CheckoutController::class, 'updateAlamat']);
-
     Route::post('/checkout/bayar', [CheckoutController::class, 'reqPayment']);
-
     Route::get('/checkout/bayar', [CheckoutController::class, 'viewPembayaran'])->name('viewBayar');
+    // /.Checkout
+
+    // Daftar Pesanan /user
+    // Route::get('/riwayat-pesanan');
 });
 Route::get('/toko', [shopController::class, 'index'])->name('toko');
 
